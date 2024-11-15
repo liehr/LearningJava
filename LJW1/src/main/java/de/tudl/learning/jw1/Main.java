@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class Main {
     static Logger logger = Logger.getLogger(Main.class.getName());
-    private static Todo todoList = new Todo();
+    private static final Todo todoList = new Todo();
     private static final Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -53,8 +53,21 @@ public class Main {
         System.out.println("5 - Delete a Task");
         System.out.println("6 - Quit");
 
-        int selection = input.nextInt();
-        input.nextLine(); // Clear the newline character left by nextInt
+        int selection = -1;
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.print("Please enter a number: ");
+            if (input.hasNextInt()) {
+                selection = input.nextInt();
+                input.nextLine();
+                validInput = true;
+            } else {
+                logger.warning("Invalid input. Please enter a valid number.");
+                input.nextLine();
+            }
+        }
+
         return selection;
     }
 
@@ -108,10 +121,87 @@ public class Main {
     }
 
     private static void editTask() {
-        logger.info("Editing a task (feature not implemented yet).");
+        todoList.getTasks().forEach(e -> logger.log(Level.INFO, "Task ID: {0}", e.getId()));
+
+        System.out.print("Enter task id:");
+        String id = input.nextLine();
+
+        Task searchTask = null;
+
+        try
+        {
+            searchTask = todoList.getTask(UUID.fromString(id));
+            showTask(searchTask);
+        }
+        catch (Exception e)
+        {
+            logger.log(Level.WARNING, "No task found using ID {0}", id);
+        }
+
+        if (searchTask == null) return;
+
+        System.out.printf("Enter new title (Old: %s) :%n", searchTask.getTitle());
+        String newTitle = input.nextLine();
+
+        System.out.printf("Enter a new description (Old: %s) :%n", searchTask.getDescription());
+        String newDescription = input.nextLine();
+
+        System.out.printf("Enter new due date (Old: %s) :%n", searchTask.getDueDate());
+        String newDueDate = input.nextLine();
+
+        try {
+            if (!newTitle.isEmpty())
+                searchTask.setTitle(newTitle);
+
+            if (!newDescription.isEmpty())
+                searchTask.setDescription(newDescription);
+
+            if (!newDueDate.isEmpty())
+                searchTask.setDueDate(LocalDateTime.parse(newDueDate));
+
+            todoList.updateTask(searchTask);
+            logger.log(Level.INFO, "Task {0} updated successfully!", searchTask.getTitle());
+        }
+        catch (Exception e)
+        {
+            logger.log(Level.WARNING, "Cannot update Task with Id {0}", searchTask.getId());
+        }
     }
 
     private static void deleteTask() {
-        logger.info("Deleting a task (feature not implemented yet).");
+        todoList.getTasks().forEach(e -> logger.log(Level.INFO, "Task ID: {0}", e.getId()));
+
+        System.out.print("Enter task id:");
+        String id = input.nextLine();
+
+        Task searchTask = null;
+
+        try
+        {
+            searchTask = todoList.getTask(UUID.fromString(id));
+            showTask(searchTask);
+        }
+        catch (Exception e)
+        {
+            logger.log(Level.WARNING, "No task found using ID {0}", id);
+        }
+
+        if (searchTask == null) return;
+
+        System.out.printf("Are you shure you want to delete this task? (Y, N) %n");
+        String choice = input.nextLine();
+
+        if (!choice.toLowerCase().contentEquals("y"))
+            return;
+
+        try
+        {
+            todoList.deleteTask(searchTask.getId());
+            logger.info("Task deleted successfully!");
+        }
+        catch (Exception e)
+        {
+            logger.warning("Cannot delete task!");
+        }
     }
 }
