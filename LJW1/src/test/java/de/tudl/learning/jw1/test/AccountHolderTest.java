@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class AccountHolderTest {
 
     @Test
-    void testAccountHolderInitialization() {
+    void testAccounatHolderInitialization() {
         UUID id = UUID.randomUUID();
         String name = "John";
         String surname = "Doe";
@@ -79,23 +79,27 @@ class AccountHolderTest {
     }
 
     @Test
-    void testImmutability() {
+    void testWithMethodsCreateNewInstances() {
         UUID id = UUID.randomUUID();
         String name = "Immutable";
         String surname = "Test";
-        LocalDate birthday = LocalDate.parse("2000-01-01");
+        LocalDate birthday = LocalDate.of(2000, 1, 1);
 
         AccountHolder holder = new AccountHolder(id, name, surname, birthday);
 
-        assertThrows(UnsupportedOperationException.class, () -> {
-            throw new UnsupportedOperationException();
-        });
+        AccountHolder updatedHolder = holder.withName("UpdatedName");
 
-        assertEquals(id, holder.getId());
-        assertEquals(name, holder.getName());
-        assertEquals(surname, holder.getSurname());
-        assertEquals(birthday, holder.getBirthday());
+        assertEquals(name, holder.getName(), "Original name should remain unchanged.");
+        assertEquals(surname, holder.getSurname(), "Original surname should remain unchanged.");
+        assertEquals(birthday, holder.getBirthday(), "Original birthday should remain unchanged.");
+        assertEquals(id, holder.getId(), "Original ID should remain unchanged.");
+
+        assertEquals("UpdatedName", updatedHolder.getName(), "Updated name should reflect the change.");
+        assertEquals(surname, updatedHolder.getSurname(), "Updated surname should remain the same.");
+        assertEquals(birthday, updatedHolder.getBirthday(), "Updated birthday should remain the same.");
+        assertEquals(id, updatedHolder.getId(), "Updated ID should remain the same.");
     }
+
 
     @Test
     void testWithBirthdayCreatesNewInstance() {
@@ -107,7 +111,7 @@ class AccountHolderTest {
         AccountHolder original = new AccountHolder(id, name, surname, birthday);
 
         LocalDate newBirthday = LocalDate.parse("1990-01-01");
-        AccountHolder updated = new AccountHolder(id, name, surname, newBirthday);
+        AccountHolder updated = original.withBirthday(newBirthday);
 
         assertEquals(
                 birthday,
