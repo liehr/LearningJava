@@ -16,16 +16,17 @@
 ## Daily Progress
 - **Day 1:** Learned what `Test Driven Development` is! Tried to incorporate it in developing the Calculator Application.
 - **Day 2:** Holy shit! `TDD` takes a lot of time! But today was a huge progress day! CRUD for Todos is done, the calculator is finished and I learned how to test Models.
-- **Day 3:** 
-- **Day 4:** 
-- **Day 5:** 
-- **Day 6:** 
+- **Day 3:** Unfortunately was in hospital for 3 days!
+- **Day 4:** Unfortunately was in hospital for 3 days!
+- **Day 5:** Unfortunately was in hospital for 3 days!
+- **Day 6:** Learned what immutable models are and implemented it for the `AccontHolder.java`!
 - **Day 7:**
 
 ## Lessons Learned
 - **Learned to use `TDD` even for basic and easy applications like the calculator. It's not convenient in the first place but
 thinking more about what the functionality of methods is, even before implementing them is amazing!**
 - **Learned how to fully test models. I had to ask ChatGPT how it's possible to modify Objects without modifying the internal state. `Copy Constructors` and `Mapping` when retrieving data.**
+- **Learned the Advantages and Disadvantages of `immutable models`! It comes at a cost, but hybrid options like the `Builder pattern` are good approaches.**
 
 ## Challenges and Solutions
 - **Issue:** When retrieving data with a getter, modifying the data without calling an update function. This changes the internal state of the object.
@@ -33,7 +34,8 @@ thinking more about what the functionality of methods is, even before implementi
 
 ## Project Summaries
 - **Calculator:** Overall very easy. Learned to work with double instead of int. Had to learn the hard way, that using Math Libs isn't bad when extreme precision isn't necessary!
-- **To-Do List Application:**
+- **To-Do List Application:** Learned to fully test models and small applications that use the model.
+- **Bank Account Simulator:** 
 
 ## Next Steps
 - **More to add**
