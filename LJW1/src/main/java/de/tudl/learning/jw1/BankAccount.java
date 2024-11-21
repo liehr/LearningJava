@@ -66,7 +66,8 @@ public class BankAccount
         return balance;
     }
 
-    public AccountHolder getAccountHolder() {
+    public AccountHolder getAccountHolder()
+    {
         return accountHolder;
     }
 

@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class AccountHolderTest {
 
     @Test
-    void testAccounatHolderInitialization() {
+    void testAccountHolderInitialization() {
         UUID id = UUID.randomUUID();
         String name = "John";
         String surname = "Doe";
@@ -54,7 +54,7 @@ class AccountHolderTest {
     }
 
     @ParameterizedTest
-    @MethodSource("invalidTaskArgumentsProvider")
+    @MethodSource("invalidAccountHolderArgumentsProvider")
     void testTaskInitializationWithInvalidArguments(
             UUID id,
             String name,
@@ -66,7 +66,7 @@ class AccountHolderTest {
         );
     }
 
-    private static Stream<Arguments> invalidTaskArgumentsProvider() {
+    private static Stream<Arguments> invalidAccountHolderArgumentsProvider() {
         UUID id = UUID.randomUUID();
 
         return Stream.of(
