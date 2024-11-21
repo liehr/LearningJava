@@ -39,6 +39,25 @@ public class BankAccount
         return new BankAccount(this.id, this.balance, newAccountHolder);
     }
 
+    public BankAccount deposit(double amount)
+    {
+        if (amount < 0)
+            throw new IllegalArgumentException("Deposit amount must be positive!");
+
+        return withBalance(this.balance + amount);
+    }
+
+    public BankAccount withdraw(double amount)
+    {
+        if (amount < 0)
+            throw new IllegalArgumentException("Withdrawal amount must be positive!");
+
+        if (this.balance - amount < 0)
+            throw new IllegalArgumentException("Insufficient balance to fulfill withdrawal!");
+
+        return withBalance(this.balance - amount);
+    }
+
     public UUID getId() {
         return id;
     }

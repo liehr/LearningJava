@@ -106,6 +106,8 @@ class BankAccountTest {
                 updatedBankAccount.getAccountHolder(),
                 "Updated account holder should remain the same."
         );
+
+        assertNotSame(bankAccount, updatedBankAccount, "Original and updated should not be the same object.");
     }
 
     @Test
@@ -128,6 +130,8 @@ class BankAccountTest {
                 updatedBankAccount.getBalance(),
                 "Updated balance should reflect the change."
         );
+
+        assertNotSame(bankAccount, updatedBankAccount, "Original and updated should not be the same object.");
     }
 
     @Test
@@ -157,6 +161,8 @@ class BankAccountTest {
                 updated.getAccountHolder(),
                 "Updated account holder should be set correctly."
         );
+
+        assertNotSame(original, updated, "Original and updated should not be the same object.");
     }
 
     @Test
@@ -201,5 +207,59 @@ class BankAccountTest {
         );
 
         assertEquals(id, updated.getId(), "ID should remain the same.");
+
+        assertNotSame(original, updated, "Original and updated should not be the same object.");
+    }
+
+    @Test
+    void testDepositUpdatesBalance()
+    {
+        BankAccount original = new BankAccount();
+
+        BankAccount updated = original.deposit(10.0);
+
+        assertEquals(updated.getBalance(), original.getBalance() + 10.0, "Updated balance should be modified correctly.");
+    }
+
+    @Test
+    void testDepositWithNegativeAmount()
+    {
+        BankAccount original = new BankAccount();
+
+        assertThrows(IllegalArgumentException.class, () -> original.deposit(-10.0));
+    }
+
+    @Test
+    void testWithdrawUpdatesBalance()
+    {
+        UUID id = UUID.randomUUID();
+        double balance = 42.20;
+        AccountHolder accountHolder = new AccountHolder();
+
+        BankAccount original = new BankAccount(id, balance, accountHolder);
+
+        BankAccount updated = original.withdraw(10.0);
+
+        assertEquals(updated.getBalance(), original.getBalance() - 10.0, "Updated balance should be modified correctly.");
+    }
+
+    @Test
+    void testWithdrawWithNegativeBalance()
+    {
+        BankAccount original = new BankAccount();
+
+        assertThrows(IllegalArgumentException.class, () -> original.withdraw(-10.0));
+    }
+
+    @Test
+    void testWithdrawWithInsufficientBalance()
+    {
+        UUID id = UUID.randomUUID();
+        double balance = 42.20;
+        AccountHolder accountHolder = new AccountHolder();
+
+        BankAccount original = new BankAccount(id, balance, accountHolder);
+
+        assertThrows(IllegalArgumentException.class, () -> original.withdraw(400.0));
     }
 }
