@@ -3,3 +3,7 @@
 *.class
 
 LJW1/target/
+
+LJW2/target/maven-archiver/
+
+LJW2/target/

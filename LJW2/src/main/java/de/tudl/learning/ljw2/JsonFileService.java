@@ -15,7 +15,7 @@ public class JsonFileService {
 
     private final ObjectMapper objectMapper;
     private final String filePath;
-    private Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     public JsonFileService(String filePath) {
         validateFilePath(filePath);
