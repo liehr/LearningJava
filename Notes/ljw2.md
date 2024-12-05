@@ -1,12 +1,12 @@
 # Week 1 of Learning Java
 
-| Topic                       | Difficulty | Status     | Goals                                                                                    |
-|-----------------------------|------------|------------|------------------------------------------------------------------------------------------|
-| Calculator                  | 🟢 Easy    | ✅ Done     | Learn Java syntax, basic operators, control structures, input/output handling            |
-| To-Do List Application      | 🟢 Easy    | ✅ Done     | Practice `ArrayList`, OOP basics (classes and objects), menu-driven program structure    |
-| Bank Account Simulator      | 🟡 Medium  | ✅ Done     | Understand classes, methods, object-oriented principles, and basic error handling        |
-| Contact Book with File I/O  | 🟡 Medium  | ✅ Done     | Work with file operations, `HashMap`, and exception handling                             |
-| Mini E-Commerce Console App | 🔴 Hard    | ⬜ Not Done | Combine OOP concepts, `ArrayList` and `HashMap`, user interactions, and simple inventory |
+| Topic                       | Difficulty | Status | Goals                                                                                    |
+|-----------------------------|------------|--------|------------------------------------------------------------------------------------------|
+| Calculator                  | 🟢 Easy    | ✅ Done | Learn Java syntax, basic operators, control structures, input/output handling            |
+| To-Do List Application      | 🟢 Easy    | ✅ Done | Practice `ArrayList`, OOP basics (classes and objects), menu-driven program structure    |
+| Bank Account Simulator      | 🟡 Medium  | ✅ Done | Understand classes, methods, object-oriented principles, and basic error handling        |
+| Contact Book with File I/O  | 🟡 Medium  | ✅ Done | Work with file operations, `HashMap`, and exception handling                             |
+| Mini E-Commerce Console App | 🔴 Hard    | 🔄 WIP | Combine OOP concepts, `ArrayList` and `HashMap`, user interactions, and simple inventory |
 
 ## Week 2 Learning Goals
 - Learn how file I/O works in Java
